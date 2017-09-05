@@ -18,18 +18,18 @@ public class Exercicio_Cinco {
     //
     private static String combinacoes(int totalCombinacoes,String combinados,String caracteres){
 
-        if(combinados.split(", ").length == totalCombinacoes)
-           return combinados;
+        if(combinados.split(", ").length == totalCombinacoes){
+           System.out.println("Impressao: "+combinados);
+           return null;
+        }
         
         StringBuilder sb = new StringBuilder(); 
         String nc = novaCombinacao(caracteres);
-        
-        if(!combinados.contains(nc) || !combinados.matches("["+nc+"]"))
-            combinados = String.valueOf(sb.append(combinados).append(nc).append(", "));
+        String novaStr = "";
+        if(!combinados.contains(nc) )
+            novaStr = String.valueOf(sb.append(combinados).append(nc).append(", "));
 
-        
-        System.out.println("Impressao: "+combinados);
-        return  String.valueOf(sb) + combinacoes(totalCombinacoes, combinados, caracteres);
+        return  String.valueOf(sb) + combinacoes(totalCombinacoes, novaStr, caracteres);
     }
     
     private static String novaCombinacao(String caracteres){
@@ -41,7 +41,6 @@ public class Exercicio_Cinco {
             String novoChar = a[gerador.nextInt(a.length)]+"";
             if(!s.contains(novoChar))
                 s += novoChar;
-//            System.out.println("a " +s);
         }
         return s;
     }
@@ -60,16 +59,14 @@ public class Exercicio_Cinco {
         String s = JOptionPane.showInputDialog("Quantas primeiras letras desejas combinar?");
         int letras = Integer.parseInt(s);
 
-        String ss = combinacoes(totalElementos(letras), "", caracteres(letras));
-        System.out.println("As combinacoes sao: "+ss);
+        combinacoes(totalElementos(letras), "", caracteres(letras));
         
     }
     
     
     public static void main(String[] args) {
-//        System.out.println(caracteres(4));
+
         combinacoesDeLetras();
-//        System.out.println(totalElementos(0));
         
     }
     
