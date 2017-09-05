@@ -11,14 +11,13 @@ package mz.co.uem;
  */
 public class Exercicio_Dois {
     public static void main(String[] args) {
-        System.out.println("Multiplicacao: "+multiplica(4, 4, 0));
+        System.out.println("Multiplicacao: "+multiplica(4, 4));
     }
     
-    private static double multiplica(int i,int i2, int cont){
-       if(cont == i2)
+    private static double multiplica(int i,int i2){
+       if(i2 == 0 )
            return 0;
-        
-       cont ++;
-        return i+multiplica(i, i2, cont);
+     
+        return i+multiplica(i, i2-1);
     }
 }

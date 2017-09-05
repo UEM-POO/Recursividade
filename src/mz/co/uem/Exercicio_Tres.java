@@ -14,9 +14,9 @@ import javax.swing.JOptionPane;
 public class Exercicio_Tres {
     
     public static void main(String[] args) {
-//        String str = JOptionPane.showInputDialog("Digite um numero:");
+
         
-        System.out.println("Result: "+soma(1));
+        System.out.println("Result: "+soma(555));
     }
     
     private static int soma(int i){
@@ -24,7 +24,8 @@ public class Exercicio_Tres {
             return i;
         
         String nr = String.valueOf(i).charAt(0)+"";
-        return Integer.parseInt(nr) + soma(Integer.parseInt((""+i).replaceFirst(nr, "")));
+        return Integer.parseInt(nr) 
+                + soma(Integer.parseInt((""+i).replaceFirst(nr, "")));
         
     }
 }
