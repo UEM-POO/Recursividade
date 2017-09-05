@@ -1,8 +1,8 @@
 
 package mz.co.uem;
 
-import java.util.Arrays;
-import java.util.Vector;
+import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *  1. meotod que retorna os carracteres
@@ -17,17 +17,33 @@ import java.util.Vector;
 public class Exercicio_Cinco {
     //
     private static String combinacoes(int totalCombinacoes,String combinados,String caracteres){
+
         if(combinados.split(", ").length == totalCombinacoes)
            return combinados;
-        String novaComb = novaCombinacao(caracteres);
-        String novaCombinacao = combinados.contains(novaComb) ? "" : novaComb;
-        return  novaCombinacao + combinacoes(totalCombinacoes, combinados, caracteres);
+        
+        StringBuilder sb = new StringBuilder(); 
+        String nc = novaCombinacao(caracteres);
+        
+        if(!combinados.contains(nc) || !combinados.matches("["+nc+"]"))
+            combinados = String.valueOf(sb.append(combinados).append(nc).append(", "));
+
+        
+        System.out.println("Impressao: "+combinados);
+        return  String.valueOf(sb) + combinacoes(totalCombinacoes, combinados, caracteres);
     }
     
     private static String novaCombinacao(String caracteres){
         char[] a = caracteres.toCharArray();
-        Arrays.sort(a);
-        return String.valueOf(a);
+        Random gerador = new Random();
+        String s = "";
+        while(s.length() != caracteres.length()) {  
+            
+            String novoChar = a[gerador.nextInt(a.length)]+"";
+            if(!s.contains(novoChar))
+                s += novoChar;
+//            System.out.println("a " +s);
+        }
+        return s;
     }
     
     private static String caracteres(int total){
@@ -40,10 +56,20 @@ public class Exercicio_Cinco {
         return -1;
     }
     
+    public static void combinacoesDeLetras(){
+        String s = JOptionPane.showInputDialog("Quantas primeiras letras desejas combinar?");
+        int letras = Integer.parseInt(s);
+
+        String ss = combinacoes(totalElementos(letras), "", caracteres(letras));
+        System.out.println("As combinacoes sao: "+ss);
+        
+    }
+    
     
     public static void main(String[] args) {
 //        System.out.println(caracteres(4));
-        System.out.println(totalElementos(0));
+        combinacoesDeLetras();
+//        System.out.println(totalElementos(0));
         
     }
     
