@@ -1,6 +1,7 @@
 
 package mz.co.uem;
 
+import java.util.Arrays;
 import java.util.Vector;
 
 /**
@@ -16,14 +17,17 @@ import java.util.Vector;
 public class Exercicio_Cinco {
     //
     private static String combinacoes(int totalCombinacoes,String combinados,String caracteres){
-       if( i2 == 0 )
-           return 0;
-     
-        return ""
+        if(combinados.split(", ").length == totalCombinacoes)
+           return combinados;
+        String novaComb = novaCombinacao(caracteres);
+        String novaCombinacao = combinados.contains(novaComb) ? "" : novaComb;
+        return  novaCombinacao + combinacoes(totalCombinacoes, combinados, caracteres);
     }
     
-    private static String[] elementos(String str){
-        
+    private static String novaCombinacao(String caracteres){
+        char[] a = caracteres.toCharArray();
+        Arrays.sort(a);
+        return String.valueOf(a);
     }
     
     private static String caracteres(int total){
